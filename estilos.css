@@ -1,0 +1,554 @@
+
+/* =========================================================
+   DASHBOARD DE TORNEOS GAMER
+   Estilo Cyberpunk - Neón azul, cian y magenta
+   Sin librerías externas
+   ========================================================= */
+
+:root {
+    --fondo: #050b1b;
+    --panel: rgba(5, 15, 37, 0.94);
+    --panel-secundario: rgba(7, 24, 52, 0.95);
+    --input: #081832;
+    --borde: #075b9b;
+    --cian: #00eaff;
+    --azul: #078bff;
+    --magenta: #ff16c8;
+    --texto: #e6f4ff;
+    --texto-secundario: #9bb9dc;
+    --error: #ff3d79;
+    --exito: #00ffc3;
+    --radio: 12px;
+    --sombra-cian: 0 0 20px rgba(0, 234, 255, 0.18);
+    --sombra-magenta: 0 0 20px rgba(255, 22, 200, 0.18);
+}
+
+/* ================ REINICIO GENERAL ================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    padding: 35px 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--texto);
+    line-height: 1.6;
+    background-color: var(--fondo);
+
+    /* Imagen de fondo gamer */
+    background-image:
+        linear-gradient(
+            rgba(3, 8, 24, 0.38),
+            rgba(3, 8, 24, 0.72)
+        ),
+        url("fondo-gamer.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* ================ CONTENEDOR PRINCIPAL ================ */
+
+#Torneos {
+    position: relative;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px;
+    overflow: hidden;
+
+    background: var(--panel);
+    border: 1px solid var(--cian);
+    border-radius: 20px;
+
+    box-shadow:
+        0 0 15px rgba(0, 234, 255, 0.12),
+        0 0 45px rgba(0, 100, 255, 0.12),
+        0 20px 60px rgba(0, 0, 0, 0.65);
+}
+
+/* Línea neón superior */
+
+#Torneos::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+
+    background: linear-gradient(
+        90deg,
+        var(--cian),
+        var(--azul),
+        var(--magenta)
+    );
+
+    box-shadow: 0 0 15px var(--cian);
+}
+
+/* ================ TÍTULOS ================ */
+
+h1,
+h2,
+h3 {
+    color: var(--texto);
+    line-height: 1.3;
+}
+
+h1 {
+    margin-bottom: 12px;
+    text-align: center;
+    font-size: clamp(1.7rem, 4vw, 2.6rem);
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+    background: linear-gradient(
+        90deg,
+        var(--cian),
+        #6b9dff,
+        var(--magenta)
+    );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    filter: drop-shadow(0 0 12px rgba(0, 234, 255, 0.18));
+}
+
+h2 {
+    margin-bottom: 24px;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--cian);
+}
+
+h3 {
+    margin-bottom: 15px;
+    color: var(--cian);
+    font-size: 1.1rem;
+}
+
+/* ================ FORMULARIO ================ */
+
+form {
+    width: 100%;
+}
+
+label {
+    display: block;
+    margin: 16px 0 7px;
+    color: #b9d9ff;
+    font-size: 0.9rem;
+    font-weight: bold;
+    letter-spacing: 0.3px;
+}
+
+/* Campos de texto, números y listas */
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+input[type="email"],
+input[type="password"],
+select,
+textarea {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    padding: 13px 15px;
+    margin-bottom: 5px;
+
+    color: var(--texto);
+    background-color: var(--input);
+    border: 1px solid #14548b;
+    border-radius: 9px;
+
+    font-family: inherit;
+    font-size: 0.95rem;
+
+    outline: none;
+    transition:
+        border-color 0.25s,
+        box-shadow 0.25s,
+        background-color 0.25s;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #7899c0;
+}
+
+/* Efecto al seleccionar un campo */
+
+input:focus,
+select:focus,
+textarea:focus {
+    background-color: #0b2143;
+    border-color: var(--cian);
+
+    box-shadow:
+        0 0 0 2px rgba(0, 234, 255, 0.10),
+        0 0 16px rgba(0, 234, 255, 0.18);
+}
+
+/* Listas desplegables */
+
+select {
+    cursor: pointer;
+}
+
+select option {
+    color: var(--texto);
+    background-color: #081832;
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* ================ MENSAJES DE VALIDACIÓN ================ */
+
+.error {
+    display: block;
+    min-height: 18px;
+    margin: 3px 0 8px;
+
+    color: var(--error);
+    font-size: 0.82rem;
+    font-weight: 500;
+}
+
+#mensajeGeneral {
+    min-height: 24px;
+    margin: 16px 0;
+    padding: 12px 15px;
+
+    color: var(--cian);
+    background: rgba(0, 145, 255, 0.08);
+    border: 1px solid #075b9b;
+    border-radius: 9px;
+
+    font-size: 0.92rem;
+}
+
+/* ================ BOTONES ================ */
+
+button {
+    position: relative;
+    padding: 13px 24px;
+    margin: 8px 8px 8px 0;
+
+    border: 1px solid transparent;
+    border-radius: 9px;
+
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s,
+        box-shadow 0.25s,
+        background-color 0.25s,
+        border-color 0.25s;
+}
+
+/* Botón principal */
+
+button:first-of-type {
+    color: #001321;
+
+    background: linear-gradient(
+        110deg,
+        var(--cian),
+        #009dff
+    );
+
+    border-color: var(--cian);
+
+    box-shadow:
+        0 0 12px rgba(0, 234, 255, 0.25),
+        inset 0 0 8px rgba(255, 255, 255, 0.12);
+}
+
+button:first-of-type:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 0 18px rgba(0, 234, 255, 0.55),
+        0 5px 20px rgba(0, 120, 255, 0.25);
+}
+
+/* Botón secundario */
+
+button:last-of-type {
+    color: var(--magenta);
+    background: rgba(255, 22, 200, 0.04);
+    border-color: var(--magenta);
+}
+
+button:last-of-type:hover {
+    color: white;
+    background: rgba(255, 22, 200, 0.13);
+    box-shadow: var(--sombra-magenta);
+    transform: translateY(-2px);
+}
+
+/* Estado de botones */
+
+button:active {
+    transform: scale(0.98);
+}
+
+button:focus-visible {
+    outline: 2px solid white;
+    outline-offset: 3px;
+}
+
+button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* ================ TABLAS ================ */
+
+table {
+    width: 100%;
+    margin-top: 28px;
+
+    color: var(--texto);
+    background: rgba(4, 17, 39, 0.9);
+
+    border: 1px solid #14548b;
+    border-radius: 10px;
+    border-spacing: 0;
+    border-collapse: separate;
+
+    overflow: hidden;
+}
+
+thead {
+    background: linear-gradient(
+        90deg,
+        rgba(0, 234, 255, 0.13),
+        rgba(255, 22, 200, 0.10)
+    );
+}
+
+th {
+    padding: 15px 13px;
+
+    color: var(--cian);
+    border-bottom: 1px solid #14548b;
+
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 0.7px;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+td {
+    padding: 13px;
+
+    color: #cce1fa;
+    border-bottom: 1px solid rgba(35, 77, 119, 0.45);
+
+    font-size: 0.88rem;
+}
+
+tbody tr {
+    transition: background-color 0.2s;
+}
+
+tbody tr:hover {
+    background-color: rgba(0, 234, 255, 0.07);
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* ================ ESTADOS DE TORNEOS ================ */
+
+.estado {
+    display: inline-block;
+    padding: 4px 10px;
+
+    border: 1px solid currentColor;
+    border-radius: 20px;
+
+    font-size: 0.78rem;
+    font-weight: bold;
+}
+
+.activo {
+    color: var(--exito);
+    background: rgba(0, 255, 195, 0.07);
+}
+
+.proximo {
+    color: var(--cian);
+    background: rgba(0, 234, 255, 0.07);
+}
+
+.pendiente {
+    color: #9dcaff;
+    background: rgba(90, 160, 255, 0.08);
+}
+
+/* ================ CONTROLES DE ACCIONES ================ */
+
+td button {
+    padding: 7px 10px;
+    margin: 2px;
+    font-size: 0.75rem;
+    letter-spacing: 0;
+}
+
+td button:first-of-type {
+    color: var(--cian);
+    background: transparent;
+    border: 1px solid var(--cian);
+    box-shadow: none;
+}
+
+td button:first-of-type:hover {
+    background: rgba(0, 234, 255, 0.12);
+}
+
+td button:last-of-type {
+    color: var(--magenta);
+    background: transparent;
+}
+
+td button:last-of-type:hover {
+    background: rgba(255, 22, 200, 0.12);
+}
+
+/* ================ ENLACES ================ */
+
+a {
+    color: var(--cian);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+a:hover {
+    color: var(--magenta);
+}
+
+/* ================ BARRA DE DESPLAZAMIENTO ================ */
+
+::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+}
+
+::-webkit-scrollbar-track {
+    background: #050b1b;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #075b9b;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--cian);
+}
+
+/* ================ RESPONSIVE ================ */
+
+@media (max-width: 768px) {
+    body {
+        padding: 18px 10px;
+        background-attachment: scroll;
+    }
+
+    #Torneos {
+        padding: 24px 16px;
+        border-radius: 14px;
+    }
+
+    h1 {
+        font-size: 1.65rem;
+        letter-spacing: 1px;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    table {
+        display: block;
+        max-width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    th,
+    td {
+        padding: 11px 9px;
+        font-size: 0.8rem;
+    }
+
+    button {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 12px 7px;
+    }
+
+    #Torneos {
+        padding: 21px 12px;
+    }
+
+    h1 {
+        font-size: 1.35rem;
+    }
+
+    label {
+        font-size: 0.85rem;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="date"],
+    input[type="email"],
+    input[type="password"],
+    select,
+    textarea {
+        padding: 12px;
+        font-size: 0.9rem;
+    }
+
+    button {
+        width: 100%;
+        margin: 6px 0;
+        padding: 13px 12px;
+    }
+}
